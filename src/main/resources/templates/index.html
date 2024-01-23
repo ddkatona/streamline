@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:text="${name}"></h1>
+
+<div id="updatedData"></div>
+
+<script>
+    function fetchDataAndUpdate() {
+        // Use Ajax to fetch updated data without reloading the entire page
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Update the content of the div with the retrieved data
+                document.getElementById("updatedData").innerHTML = xhr.responseText;
+            }
+        };
+        xhr.open("GET", "/data", true);
+        xhr.send();
+    }
+
+    // Call the function initially or trigger it based on user actions
+    fetchDataAndUpdate();
+</script>
+
+</body>
+</html>
